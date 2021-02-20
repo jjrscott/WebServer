@@ -31,6 +31,6 @@
 
 @property (nonatomic, weak) id <WSWebServerDelegate> delegate;
 
-- (int)startServerWithPort:(int)port;
+- (BOOL)startServerWithPort:(int)port;
 
 @end

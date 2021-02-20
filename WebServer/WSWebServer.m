@@ -34,10 +34,7 @@
 
 @implementation WSWebServer
 
-- (int)startServerWithPort:(int)port {
-    struct sockaddr_in clientaddr;
-    socklen_t addrlen;
-    
+- (BOOL)startServerWithPort:(int)port {
     //Default Values PATH = ~/ and PORT=10000
     char PORT[16];
     sprintf(PORT, "%d", port);
@@ -54,7 +51,7 @@
     if (getaddrinfo( NULL, PORT, &hints, &res) != 0)
     {
         perror("getaddrinfo() error");
-        exit(1);
+        return NO;
     }
     // socket and bind
     for (p = res; p!=NULL; p=p->ai_next)
@@ -67,7 +64,7 @@
     if (p == NULL)
     {
         perror("socket() or bind()");
-        exit(1);
+        return NO;
     }
 
     freeaddrinfo(res);
@@ -76,31 +73,34 @@
     if ( listen (listenfd, 1000000) != 0 )
     {
         perror("listen() error");
-        exit(1);
+        return NO;
     }
 
     // ACCEPT connections
-    while (1)
-    {
-        addrlen = sizeof(clientaddr);
-        int socketDescriptor = accept(listenfd, (struct sockaddr *) &clientaddr, &addrlen);
-
-        if (socketDescriptor < 0)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (1)
         {
-            perror("accept() error");
-        }
-        else
-        {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                WSRequestHandler *requestHandler = [[WSRequestHandler alloc] initWithSocketDescriptor:socketDescriptor];
-                if ([requestHandler handleRequest]) {
-                    [self.delegate webServer:self startURLSchemeTask:requestHandler];
-                }
-            });
-        }
-    }
+            struct sockaddr_in clientaddr;
+            socklen_t addrlen = sizeof(clientaddr);
+            int socketDescriptor = accept(listenfd, (struct sockaddr *) &clientaddr, &addrlen);
 
-    return 0;
+            if (socketDescriptor < 0)
+            {
+                perror("accept() error");
+            }
+            else
+            {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    WSRequestHandler *requestHandler = [[WSRequestHandler alloc] initWithSocketDescriptor:socketDescriptor];
+                    if ([requestHandler handleRequest]) {
+                        [self.delegate webServer:self startURLSchemeTask:requestHandler];
+                    }
+                });
+            }
+        }
+    });
+
+    return YES;
 }
 
 @end

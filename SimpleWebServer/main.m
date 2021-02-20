@@ -32,7 +32,8 @@ int main(int argc, const char * argv[]) {
         WSWebServer *webServer = [WSWebServer new];
         WebServerDelegate *webServerDelegate = [WebServerDelegate new];
         webServer.delegate = webServerDelegate;
-        return [webServer startServerWithPort:10000];
+        [webServer startServerWithPort:10000];
+        sleep(UINT_MAX);
     }
     return 0;
 }
