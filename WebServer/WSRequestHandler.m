@@ -32,16 +32,16 @@
 
 @interface WSRequestHandler ()
 
-@property (nonatomic, assign) int fileDescriptor;
+@property (nonatomic, assign) int socketDescriptor;
 
 @end
 
 @implementation WSRequestHandler
 
-- (instancetype)initWithFileDescriptor:(int)fd {
+- (instancetype)initWithSocketDescriptor:(int)fd {
     self = [super init];
     if (self) {
-        self.fileDescriptor = fd;
+        self.socketDescriptor = fd;
     }
     return self;
 }
@@ -52,7 +52,7 @@
 
     memset( (void*)mesg, (int)'\0', 99999 );
 
-    rcvd = recv(self.fileDescriptor, mesg, 99999, 0);
+    rcvd = recv(self.socketDescriptor, mesg, 99999, 0);
 
     if (rcvd<0)    // receive error
     {
@@ -103,18 +103,17 @@
 }
 
 - (void)didFinish {
-    shutdown (self.fileDescriptor, SHUT_RDWR);         //All further send and recieve operations are DISABLED...
-    close(self.fileDescriptor);
+    shutdown (self.socketDescriptor, SHUT_RDWR);         //All further send and recieve operations are DISABLED...
+    close(self.socketDescriptor);
 }
 
 - (void)didReceiveData:(nonnull NSData *)data {
     [self _sendData:data];
 }
 
-- (void)didReceiveResponse:(nonnull NSHTTPURLResponse *)response {
-    
-    [self _sendStringWithFormat:@"HTTP/1.0 %ld OK\r\n", response.statusCode];
-    [response.allHeaderFields enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull value, BOOL * _Nonnull stop) {
+- (void)didReceiveResponseWithURL:(NSURL *)url statusCode:(NSInteger)statusCode headerFields:(nullable NSDictionary<NSString *, NSString *> *)headerFields {
+    [self _sendStringWithFormat:@"HTTP/1.0 %ld %@\r\n", statusCode, [NSHTTPURLResponse localizedStringForStatusCode:statusCode]];
+    [headerFields enumerateKeysAndObjectsUsingBlock:^(NSString *  _Nonnull key, NSString *  _Nonnull value, BOOL * _Nonnull stop) {
         [self _sendStringWithFormat:@"%@: %@\r\n", key, value];
     }];
 
@@ -131,7 +130,7 @@
 
 - (void)_sendData:(nonnull NSData *)data {
     [data enumerateByteRangesUsingBlock:^(const void * _Nonnull bytes, NSRange byteRange, BOOL * _Nonnull stop) {
-        send (self.fileDescriptor, bytes, byteRange.length, 0);
+        send (self.socketDescriptor, bytes, byteRange.length, 0);
     }];
 }
 

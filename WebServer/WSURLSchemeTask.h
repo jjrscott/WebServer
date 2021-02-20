@@ -35,12 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy, nonnull) NSURLRequest *request;
 
 /*! @abstract Set the current response object for the task.
- @param response The response to use.
+ @param     url the URL from which the response was generated.
+ @param    statusCode an HTTP status code.
+ @param     headerFields A dictionary representing the header keys and values of the server response.
  @discussion This method must be called at least once for each URL scheme handler task.
  An exception will be thrown if you try to send a new response object after the task has already been completed.
  An exception will be thrown if your app has been told to stop loading this task via the registered WKURLSchemeHandler object.
  */
-- (void)didReceiveResponse:(NSHTTPURLResponse *)response;
+- (void)didReceiveResponseWithURL:(NSURL *)url statusCode:(NSInteger)statusCode headerFields:(nullable NSDictionary<NSString *, NSString *> *)headerFields;
 
 /*! @abstract Add received data to the task.
  @param data The data to add.

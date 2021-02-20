@@ -33,12 +33,9 @@
     NSLog(@"request.allHTTPHeaderFields = %@", urlSchemeTask.request.allHTTPHeaderFields);
     NSLog(@"request.HTTPBody = %@", urlSchemeTask.request.HTTPBody);
     
-    NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:urlSchemeTask.request.URL
-                                                              statusCode:200
-                                                             HTTPVersion:nil
-                                                            headerFields:nil];
-    
-    [urlSchemeTask didReceiveResponse:response];
+    [urlSchemeTask didReceiveResponseWithURL:urlSchemeTask.request.URL
+                                  statusCode:200
+                                headerFields:nil];
     [urlSchemeTask didReceiveData:[@"Hello World!" dataUsingEncoding:NSUTF8StringEncoding]];
     [urlSchemeTask didFinish];
 }

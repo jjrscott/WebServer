@@ -26,7 +26,6 @@
 #import <Foundation/Foundation.h>
 #import <WebServer/WebServer.h>
 
-
 @interface WebServerDelegate : NSObject <WSWebServerDelegate>
 
 @end

@@ -28,7 +28,7 @@
 
 @interface WSRequestHandler : NSObject <WSURLSchemeTask>
 
-- (instancetype)initWithFileDescriptor:(int)fd;
+- (instancetype)initWithSocketDescriptor:(int)socketDescriptor;
 
 - (BOOL)handleRequest;
 

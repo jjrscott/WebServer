@@ -92,7 +92,7 @@
         else
         {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                WSRequestHandler *requestHandler = [[WSRequestHandler alloc] initWithFileDescriptor:socketDescriptor];
+                WSRequestHandler *requestHandler = [[WSRequestHandler alloc] initWithSocketDescriptor:socketDescriptor];
                 if ([requestHandler handleRequest]) {
                     [self.delegate webServer:self startURLSchemeTask:requestHandler];
                 }
