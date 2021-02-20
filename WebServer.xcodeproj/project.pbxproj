@@ -67,6 +67,8 @@
 		06E65D1925E05F9E00C32229 /* WebServerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebServerDelegate.h; sourceTree = "<group>"; };
 		06E65D1A25E05F9E00C32229 /* WebServerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebServerDelegate.m; sourceTree = "<group>"; };
 		06E65D2525E11F4600C32229 /* WSURLSchemeTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSURLSchemeTask.h; sourceTree = "<group>"; };
+		06E65D4F25E1429800C32229 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		06E65D5125E142A500C32229 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,8 @@
 		06E65CD625E0302B00C32229 = {
 			isa = PBXGroup;
 			children = (
+				06E65D5125E142A500C32229 /* LICENSE */,
+				06E65D4F25E1429800C32229 /* README.md */,
 				06E65CE325E0309300C32229 /* SimpleWebServer */,
 				06E65CF525E042B000C32229 /* WebServer */,
 				06E65D0025E042B000C32229 /* WebServerTests */,
