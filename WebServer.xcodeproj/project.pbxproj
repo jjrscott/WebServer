@@ -14,8 +14,8 @@
 		06E65D0D25E042D200C32229 /* WSWebServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E65D0B25E042D200C32229 /* WSWebServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06E65D0E25E042D200C32229 /* WSWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E65D0C25E042D200C32229 /* WSWebServer.m */; };
 		06E65D1025E042E600C32229 /* WSWebServerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E65D0F25E042E600C32229 /* WSWebServerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06E65D1325E0436900C32229 /* XWSURLSchemeTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E65D1125E0436900C32229 /* XWSURLSchemeTask.h */; };
-		06E65D1425E0436900C32229 /* XWSURLSchemeTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E65D1225E0436900C32229 /* XWSURLSchemeTask.m */; };
+		06E65D1325E0436900C32229 /* WSRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E65D1125E0436900C32229 /* WSRequestHandler.h */; };
+		06E65D1425E0436900C32229 /* WSRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E65D1225E0436900C32229 /* WSRequestHandler.m */; };
 		06E65D1825E0442D00C32229 /* WebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E65CF425E042B000C32229 /* WebServer.framework */; };
 		06E65D1B25E05F9E00C32229 /* WebServerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E65D1A25E05F9E00C32229 /* WebServerDelegate.m */; };
 		06E65D2625E11F4600C32229 /* WSURLSchemeTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E65D2525E11F4600C32229 /* WSURLSchemeTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,8 +62,8 @@
 		06E65D0B25E042D200C32229 /* WSWebServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSWebServer.h; sourceTree = "<group>"; };
 		06E65D0C25E042D200C32229 /* WSWebServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSWebServer.m; sourceTree = "<group>"; };
 		06E65D0F25E042E600C32229 /* WSWebServerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSWebServerDelegate.h; sourceTree = "<group>"; };
-		06E65D1125E0436900C32229 /* XWSURLSchemeTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWSURLSchemeTask.h; sourceTree = "<group>"; };
-		06E65D1225E0436900C32229 /* XWSURLSchemeTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWSURLSchemeTask.m; sourceTree = "<group>"; };
+		06E65D1125E0436900C32229 /* WSRequestHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WSRequestHandler.h; sourceTree = "<group>"; };
+		06E65D1225E0436900C32229 /* WSRequestHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WSRequestHandler.m; sourceTree = "<group>"; };
 		06E65D1925E05F9E00C32229 /* WebServerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebServerDelegate.h; sourceTree = "<group>"; };
 		06E65D1A25E05F9E00C32229 /* WebServerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebServerDelegate.m; sourceTree = "<group>"; };
 		06E65D2525E11F4600C32229 /* WSURLSchemeTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSURLSchemeTask.h; sourceTree = "<group>"; };
@@ -135,8 +135,8 @@
 				06E65D0C25E042D200C32229 /* WSWebServer.m */,
 				06E65D0F25E042E600C32229 /* WSWebServerDelegate.h */,
 				06E65D2525E11F4600C32229 /* WSURLSchemeTask.h */,
-				06E65D1125E0436900C32229 /* XWSURLSchemeTask.h */,
-				06E65D1225E0436900C32229 /* XWSURLSchemeTask.m */,
+				06E65D1125E0436900C32229 /* WSRequestHandler.h */,
+				06E65D1225E0436900C32229 /* WSRequestHandler.m */,
 				06E65CF725E042B000C32229 /* Info.plist */,
 			);
 			path = WebServer;
@@ -165,7 +165,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06E65D1325E0436900C32229 /* XWSURLSchemeTask.h in Headers */,
+				06E65D1325E0436900C32229 /* WSRequestHandler.h in Headers */,
 				06E65D0D25E042D200C32229 /* WSWebServer.h in Headers */,
 				06E65D1025E042E600C32229 /* WSWebServerDelegate.h in Headers */,
 				06E65D0425E042B000C32229 /* WebServer.h in Headers */,
@@ -301,7 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06E65D0E25E042D200C32229 /* WSWebServer.m in Sources */,
-				06E65D1425E0436900C32229 /* XWSURLSchemeTask.m in Sources */,
+				06E65D1425E0436900C32229 /* WSRequestHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

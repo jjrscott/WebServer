@@ -26,7 +26,7 @@
 
 #import "WSURLSchemeTask.h"
 
-@interface WSURLSchemeTask : NSObject <WSURLSchemeTask>
+@interface WSRequestHandler : NSObject <WSURLSchemeTask>
 
 - (instancetype)initWithFileDescriptor:(int)fd;
 

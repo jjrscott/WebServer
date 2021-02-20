@@ -26,7 +26,7 @@
 
 #import "WSWebServer.h"
 
-#import "XWSURLSchemeTask.h"
+#import "WSRequestHandler.h"
 #import "WSWebServerDelegate.h"
 
 #include <arpa/inet.h>
@@ -92,19 +92,15 @@
         else
         {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self respond:socketDescriptor];
+                WSRequestHandler *requestHandler = [[WSRequestHandler alloc] initWithFileDescriptor:socketDescriptor];
+                if ([requestHandler handleRequest]) {
+                    [self.delegate webServer:self startURLSchemeTask:requestHandler];
+                }
             });
         }
     }
 
     return 0;
-}
-
-- (void)respond:(int)socketDescriptor {
-    WSURLSchemeTask *urlSchemeTask = [[WSURLSchemeTask alloc] initWithFileDescriptor:socketDescriptor];
-    if ([urlSchemeTask handleRequest]) {
-        [self.delegate webServer:self startURLSchemeTask:urlSchemeTask];
-    }
 }
 
 @end

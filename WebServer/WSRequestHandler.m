@@ -24,19 +24,19 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "XWSURLSchemeTask.h"
+#import "WSRequestHandler.h"
 
 #include <sys/socket.h>
 
 #define BYTES 1024
 
-@interface WSURLSchemeTask ()
+@interface WSRequestHandler ()
 
 @property (nonatomic, assign) int fileDescriptor;
 
 @end
 
-@implementation WSURLSchemeTask
+@implementation WSRequestHandler
 
 - (instancetype)initWithFileDescriptor:(int)fd {
     self = [super init];
